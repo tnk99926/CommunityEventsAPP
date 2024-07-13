@@ -8,12 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 	
-	@RequestMapping("/")
-	public ModelAndView index(ModelAndView mav) {
-		mav.setViewName("index");
-		return mav;
-	}
-	
 	@RequestMapping("/login")
 	public ModelAndView login(ModelAndView mav, @RequestParam(value="error", required=false)String error) {
 		mav.setViewName("login");
