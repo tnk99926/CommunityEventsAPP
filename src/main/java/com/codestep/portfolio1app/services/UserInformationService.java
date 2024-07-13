@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.codestep.portfolio1app.entities.Prefecture;
 import com.codestep.portfolio1app.entities.User;
 import com.codestep.portfolio1app.entities.UserInformation;
+import com.codestep.portfolio1app.repositories.PrefectureRepository;
 import com.codestep.portfolio1app.repositories.UserInformationRepository;
 
 import jakarta.transaction.Transactional;
@@ -19,15 +19,16 @@ public class UserInformationService {
 	@Autowired
 	UserInformationRepository userInformationRepository;
 	
+	@Autowired
+	private PrefectureRepository prefectureRepository;
+	
 	public List<UserInformation> findAll(){
 		return userInformationRepository.findAll();
 	}
 	
-	public void create(User user, String email, Prefecture prefecture) {
-		UserInformation userInformation = new UserInformation();
+	public void create(User user, UserInformation userInformation) {
 		userInformation.setUser(user);
-		userInformation.setEmail(email);
-		userInformation.setPrefecture(prefecture);
+		userInformation.setPrefecture(prefectureRepository.getReferenceById(userInformation.getPrefectureId()));
 		userInformation.setCreated(LocalDateTime.now());
 		userInformationRepository.saveAndFlush(userInformation);
 	}
