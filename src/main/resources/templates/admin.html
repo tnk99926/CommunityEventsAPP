@@ -8,5 +8,7 @@
 <body class="container">
 	<h1 class="display-4">Test admin page</h1>
 	<p class="msg">テスト	用adminページです。</p>
+	<p>ユーザー名:<span th:text="${loginUserName}"></span></p>
+	<a th:href="@{/logout}">ログアウトする</a><br>
 </body>
 </html>
