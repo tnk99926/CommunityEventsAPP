@@ -24,7 +24,7 @@ public class Portfolio1SecurityConfig {
        http.authorizeHttpRequests(requests -> requests
     		   .anyRequest().permitAll());
        http.formLogin(form -> form
-    		   .defaultSuccessUrl("/index"));
+    		   .defaultSuccessUrl("/"));
        http.logout(LogoutConfigurer::permitAll);
        return http.build();
    }
