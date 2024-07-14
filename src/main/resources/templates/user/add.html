@@ -14,7 +14,6 @@
 		<label for="username"><span class="required">*</span>ユーザ名(10文字以内)</label>
 		<input type="text" class="me-1 form-control" name="username" id="username" th:field="*{user.username}" th:errorclass="err">
 		<div th:if="${#fields.hasErrors('user.username')}" th:errors="*{user.username}" th:errorclass="err"></div><br>
-		<div th:if="${userExistsError != null}" th:text="${userExistsError}" class="err"></div><br>
 		<label for="email"><span class="required">*</span>メールアドレス</label>
 		<input type="text" class="me-1 form-control" name="email" id="email" th:field="*{userInformation.email}" th:errorclass="err">
 		<div th:if="${#fields.hasErrors('userInformation.email')}" th:errors="*{userInformation.email}" th:errorclass="err"></div><br>
