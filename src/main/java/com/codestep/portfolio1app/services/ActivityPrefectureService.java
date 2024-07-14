@@ -13,6 +13,7 @@ import com.codestep.portfolio1app.entities.User;
 import com.codestep.portfolio1app.repositories.ActivityPrefectureRepository;
 import com.codestep.portfolio1app.repositories.PrefectureRepository;
 
+
 @Service
 public class ActivityPrefectureService {
 	
@@ -32,10 +33,10 @@ public class ActivityPrefectureService {
 		
 		for (ActivityPrefecture activityPrefecture : activityPrefectures) {
 			validator.validate(activityPrefecture, result);
-			if (result.hasErrors()) {
-	            throw new ValidationException(result);
-	        }
 		}
+		if (result.hasErrors()) {
+            throw new ValidationException(result);
+        }
 		
 		for(ActivityPrefecture activityPrefecture: activityPrefectures) {
 			activityPrefecture.setUser(user);

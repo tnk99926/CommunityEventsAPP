@@ -11,10 +11,7 @@ import com.codestep.portfolio1app.entities.UserInformation;
 import com.codestep.portfolio1app.repositories.PrefectureRepository;
 import com.codestep.portfolio1app.repositories.UserInformationRepository;
 
-import jakarta.transaction.Transactional;
-
 @Service
-@Transactional
 public class UserInformationService {
 	@Autowired
 	UserInformationRepository userInformationRepository;
