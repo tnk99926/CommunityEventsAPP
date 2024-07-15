@@ -59,8 +59,6 @@ public class UserController {
 				//mav.addObject("prefectures", prefectures);
 				mav.addObject("activityPrefectureIdsErrors", e.getBindingResult().getFieldError("prefectureId").getDefaultMessage());
 				mav.setViewName("/user/add");
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
 			
 		} else {
