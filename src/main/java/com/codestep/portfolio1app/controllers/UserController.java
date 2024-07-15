@@ -40,6 +40,9 @@ public class UserController {
 	
 	@PostMapping("/user/add")
 	public ModelAndView postAddForm(@Valid @ModelAttribute("formModel") UserFormDTO userFormDTO, BindingResult result, ModelAndView mav) {
+		List<Prefecture> prefectures = prefectureRepository.findAll();
+		mav.addObject("prefectures", prefectures);
+		
 		if(!result.hasErrors()) {
 			//	ユーザ登録
 			com.codestep.portfolio1app.entities.User formUser = userFormDTO.getUser();
@@ -52,8 +55,8 @@ public class UserController {
 				multiTableService.CreateCompleteUser(formUser, userInformation, activityPrefectures, result);
 				mav.setViewName("redirect:/");
 			} catch (ValidationException e) {
-				List<Prefecture> prefectures = prefectureRepository.findAll();
-				mav.addObject("prefectures", prefectures);
+				//List<Prefecture> prefectures = prefectureRepository.findAll();
+				//mav.addObject("prefectures", prefectures);
 				mav.addObject("activityPrefectureIdsErrors", e.getBindingResult().getFieldError("prefectureId").getDefaultMessage());
 				mav.setViewName("/user/add");
 			} catch (Exception e) {
@@ -61,8 +64,8 @@ public class UserController {
 			}
 			
 		} else {
-			List<Prefecture> prefectures = prefectureRepository.findAll();
-			mav.addObject("prefectures", prefectures);
+			//List<Prefecture> prefectures = prefectureRepository.findAll();
+			//mav.addObject("prefectures", prefectures);
 			mav.setViewName("/user/add");
 		}
 		return mav;

@@ -35,7 +35,7 @@ public class ActivityPrefecture {
 	private Prefecture prefecture ;//マッピング用フィールド。db更新なし
 	
 	@Column(name = "prefecture_id", nullable = false)
-    @Min(value= 1, message="県名の指定に誤りがあります")
-    @Max(value= 47, message="県名の指定に誤りがあります")
-    private Long prefectureId;
+	@Min(value= 1, message="県名の指定に誤りがあります")
+	@Max(value= 47, message="県名の指定に誤りがあります")
+	private Long prefectureId;
 }

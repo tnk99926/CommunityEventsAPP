@@ -10,5 +10,6 @@ import com.codestep.portfolio1app.entities.User;
 
 @Repository
 public interface ActivityPrefectureRepository extends JpaRepository<ActivityPrefecture, Long>{
-	public List<ActivityPrefecture> getByUser(User user);
+	public List<ActivityPrefecture> findByUser(User user);
+	
 }

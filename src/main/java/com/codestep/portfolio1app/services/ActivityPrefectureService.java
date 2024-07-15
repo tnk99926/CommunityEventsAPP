@@ -27,7 +27,7 @@ public class ActivityPrefectureService {
     private Validator validator;
 	
 	public List<ActivityPrefecture> getByUser(User user) {
-		return activityPrefectureRepository.getByUser(user);
+		return activityPrefectureRepository.findByUser(user);
 	}
 	public void create(User user, List<ActivityPrefecture> activityPrefectures,BindingResult result) {
 		
