@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>test page</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container">
+	<h1 class="display-4">Test index page</h1>
+	<p class="msg">テスト	用indexページです。</p>
+	<p>ユーザー名:<span th:text="${loginUserName}"></span></p>
+	<a th:href="@{/logout}">ログアウトする</a><br>
+</body>
+</html>

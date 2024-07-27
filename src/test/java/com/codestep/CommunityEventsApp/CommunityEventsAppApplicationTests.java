@@ -1,10 +1,10 @@
-package com.codestep.portfolio1app;
+package com.codestep.CommunityEventsApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Portfolio1ApplicationTests {
+class CommunityEventsAppApplicationTests {
 
 	@Test
 	void contextLoads() {
