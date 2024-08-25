@@ -3,7 +3,6 @@ package com.codestep.CommunityEventsApp.entities;
 import java.util.List;
 
 import com.codestep.CommunityEventsApp.Annotations.Password;
-import com.codestep.CommunityEventsApp.Annotations.UserExisting;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,17 +12,18 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Table(name = "users")
 @Data
+@ToString(exclude = {"activityPrefectures"}) 
 public class User {
     
     @Id
     @Size(max = 10, message="ユーザー名は10文字以下で入力してください")
 	@NotBlank(message = "ユーザー名は必須です")
     @Column(nullable = false, unique = true)
-    @UserExisting
     private String username;
 
     @Size(min = 8,max = 8, message="パスワードは8文字で入力してください")
