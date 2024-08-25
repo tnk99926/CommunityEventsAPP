@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8">
+<title>ユーザー登録</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>.err {color:red} .required {color:red}</style>
+</head>
+<body class="container">
+	<h1 class="display-4 mb-4">ユーザー情報変更</h1>
+	<h2 class="display-6" th:text="${loginUserName}"></h2>
+	<p><span class="required">*</span>は必須項目です</p>
+	<form method="post" action="" th:action="@{/user/edit/{username}(username=${loginUserName})}" th:object="${formModel}" >
+		<input type="hidden" name="user.username" th:field="*{user.username}">
+		<input type="hidden" name="user.password"  value="dummy000">
+		<label for="email"><span class="required">*</span>メールアドレス</label>
+		<input type="text" class="me-1 form-control" name="email" id="email" th:field="*{userInformation.email}" th:errorclass="err">
+		<div th:if="${#fields.hasErrors('userInformation.email')}" th:errors="*{userInformation.email}" th:errorclass="err"></div><br>
+		<label for="prefectureId"><span class="required">*</span>居住地(都道府県)</label>
+		<select class="me-1  form-control" name="prefectureId" id="prefectureId" th:field="*{userInformation.prefectureId}" th:errorclass="err">
+			<option value="0" selected>選択してください</option>
+			<option th:value="${item.id}" th:text="${item.name}" th:each="item:${prefectures}"></option>
+		</select>
+		<div th:if="${#fields.hasErrors('userInformation.prefectureId')}" th:errors="*{userInformation.prefectureId}" th:errorclass="err"></div><br>
+		<label for="activityPrefectureIds">活動地域（複数選択可）</label>
+		<select multiple class="me-1  form-control" name="activityPrefectureIds" id="activityPrefectureIds" size="15" th:field="*{activityPrefectureIds}"  th:errorclass="err">
+			<option th:value="${item.id}" th:text="${item.name}" th:each="item:${prefectures}"></option>
+		</select>
+		<div th:if="${activityPrefectureIdsErrors != null}" th:text="${activityPrefectureIdsErrors}" class="err"></div><br>
+		<input type="submit" class="btn btn-primary px-5 py-2 mt-4" value="変更"><br>
+		<a th:href="@{/user/delete}">退会する</a>
+	</form>
+	<a href="/">トップページへ戻る</a>
+</html>
