@@ -11,5 +11,5 @@ import com.codestep.CommunityEventsApp.entities.User;
 @Repository
 public interface ActivityPrefectureRepository extends JpaRepository<ActivityPrefecture, Long>{
 	public List<ActivityPrefecture> findByUser(User user);
-	
+	public ActivityPrefecture findByUserAndPrefectureId(User user, Long PrefectureId);
 }

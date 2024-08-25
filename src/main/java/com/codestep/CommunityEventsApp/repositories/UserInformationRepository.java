@@ -7,4 +7,5 @@ import com.codestep.CommunityEventsApp.entities.UserInformation;
 
 @Repository
 public interface UserInformationRepository extends JpaRepository<UserInformation, String>{
+	public UserInformation getByUsername(String username);
 }
