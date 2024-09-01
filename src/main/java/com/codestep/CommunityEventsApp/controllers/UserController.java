@@ -49,9 +49,9 @@ public class UserController {
 	
 	@GetMapping("/user/add")
 	public ModelAndView showAddForm(@ModelAttribute("formModel") UserFormDTO userFormDTO, ModelAndView mav) {
-		mav.setViewName("/user/add");
 		List<Prefecture> prefectures = prefectureService.findAll();
 		mav.addObject("prefectures", prefectures);
+		mav.setViewName("/user/add");
 		return mav;
 	}
 	
@@ -95,6 +95,7 @@ public class UserController {
 		String loginUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 		com.codestep.CommunityEventsApp.entities.User user = userService.getByUsername(username);
 		UserInformation userInformation = userInformationService.getByUsername(username);
+		
 		mav.addObject("loginUserName",loginUsername);
 		mav.addObject("email", userInformation.getEmail());
 		mav.addObject("prefecture", userInformation.getPrefecture().getName());
@@ -107,19 +108,18 @@ public class UserController {
 	@GetMapping("/user/edit/{username}")
 	public ModelAndView showEditForm(@ModelAttribute("formModel") UserFormDTO userFormDTO,@PathVariable String username, ModelAndView mav) {
 		String loginUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-		mav.addObject("loginUserName",loginUsername);
+		
 		com.codestep.CommunityEventsApp.entities.User user = userService.getByUsername(loginUsername);
-		userFormDTO.user.setUsername(loginUsername);
-		
 		UserInformation userInformation = userInformationService.getByUsername(loginUsername);
-		userFormDTO.setUserInformation(userInformation);
-		
 		List<Long> activityPrefectureIds = activityPrefectureService.getActivityPrefectureIdsByUser(user);
+		List<Prefecture> prefectures = prefectureService.findAll();
+		
+		userFormDTO.user.setUsername(loginUsername);
+		userFormDTO.setUserInformation(userInformation);
 		userFormDTO.setActivityPrefectureIds(activityPrefectureIds);
 		
-		List<Prefecture> prefectures = prefectureService.findAll();
+		mav.addObject("loginUserName",loginUsername);
 		mav.addObject("prefectures", prefectures);
-		
 		mav.setViewName("/user/edit");
 		return mav;
 	}
