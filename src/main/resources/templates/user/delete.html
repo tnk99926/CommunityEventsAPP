@@ -9,10 +9,6 @@
 	<h1 class="display-4">Test index page</h1>
 	<p class="msg">テスト	用indexページです。</p>
 	<p>ユーザー名:<span th:text="${loginUserName}"></span></p>
-	<a th:href="@{/user/add}">ユーザー登録</a><br>
-	<a th:href="@{/user/information/{username}(username=${loginUserName})}">ユーザーページへ</a><br>
-	<a th:href="@{/logout}">ログアウトする</a><br>
-	<a th:href="@{/}">コミュニティ登録</a><br>
 	<a th:href="@{/logout}">ログアウトする</a><br>
 </body>
 </html>

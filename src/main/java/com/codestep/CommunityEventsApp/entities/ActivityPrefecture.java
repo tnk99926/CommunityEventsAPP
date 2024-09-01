@@ -17,6 +17,9 @@ import lombok.Data;
 @Data
 public class ActivityPrefecture {
 	
+	public ActivityPrefecture() {
+    }
+	
 	public ActivityPrefecture(long prefectureId) {
 		this.prefectureId = prefectureId;
 	}

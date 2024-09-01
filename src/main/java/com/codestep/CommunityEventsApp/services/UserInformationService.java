@@ -1,7 +1,6 @@
 package com.codestep.CommunityEventsApp.services;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +17,8 @@ public class UserInformationService {
 	@Autowired
 	private PrefectureService prefectureService;
 	
-	public List<UserInformation> findAll(){
-		return userInformationRepository.findAll();
+	public UserInformation getByUsername(String username){
+		return userInformationRepository.getByUsername(username);
 	}
 	
 	public void create(User user, UserInformation userInformation) {
@@ -27,5 +26,14 @@ public class UserInformationService {
 		userInformation.setPrefecture(prefectureService.getById(userInformation.getPrefectureId()));
 		userInformation.setCreated(LocalDateTime.now());
 		userInformationRepository.saveAndFlush(userInformation);
+	}
+	
+	public void update(User user, UserInformation userInformation) {
+		UserInformation updatedUserInformation = userInformationRepository.getByUsername(user.getUsername());
+		updatedUserInformation.setPrefectureId(userInformation.getPrefectureId());
+		updatedUserInformation.setPrefecture(prefectureService.getById(userInformation.getPrefectureId()));
+		updatedUserInformation.setEmail(userInformation.getEmail());
+		updatedUserInformation.setUpdated(LocalDateTime.now());
+		userInformationRepository.saveAndFlush(updatedUserInformation);
 	}
 }
