@@ -33,7 +33,7 @@ public class UserInformationService {
 		updatedUserInformation.setPrefectureId(userInformation.getPrefectureId());
 		updatedUserInformation.setPrefecture(prefectureService.getById(userInformation.getPrefectureId()));
 		updatedUserInformation.setEmail(userInformation.getEmail());
-		updatedUserInformation.setUpdated(LocalDateTime.now());		System.out.println(updatedUserInformation);
+		updatedUserInformation.setUpdated(LocalDateTime.now());
 		userInformationRepository.saveAndFlush(updatedUserInformation);
 	}
 }

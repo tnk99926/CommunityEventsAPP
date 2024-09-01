@@ -36,10 +36,10 @@ public class ActivityPrefectureService {
 		return activityPrefectureIds;
 	}
 	
-	public String getActivityPrefectureNamesByUser(User user){
+	public String getActivityPrefectureNamesByUser(User user, String separator){
 		List<ActivityPrefecture> activityPrefectures = activityPrefectureRepository.findByUser(user);
 		List<String> strActivityPrefectures = activityPrefectures.stream().map(activityPrefecture -> activityPrefecture.getPrefecture().getName()).collect(Collectors.toList());
-		return String.join(" ", strActivityPrefectures);
+		return String.join(separator, strActivityPrefectures);
 	}
 	
 	public void create(User user, List<Long> activityPrefectureIds,BindingResult result) {
@@ -81,9 +81,9 @@ public class ActivityPrefectureService {
 			validator.validate(updatedActivityPrefecture, result);
 		}
 		if (result.hasErrors()) {
-            throw new ValidationException(result);
-        }
-	
+			throw new ValidationException(result);
+		}
+		
 		for(ActivityPrefecture updatedActivityPrefecture: updatedActivityPrefectures) {
 			updatedActivityPrefecture.setUser(user);
 			updatedActivityPrefecture.setPrefecture(prefectureService.getById(updatedActivityPrefecture.getPrefectureId()));

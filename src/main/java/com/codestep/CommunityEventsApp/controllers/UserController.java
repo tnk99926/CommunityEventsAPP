@@ -65,7 +65,7 @@ public class UserController {
 			mav.addObject("userExistingError", "このユーザー名はすでに使用されています");
 			mav.setViewName("/user/add");
 			return mav;
-        }
+		}
 		
 		if(!result.hasErrors()) {
 			//	ユーザ登録
@@ -98,7 +98,7 @@ public class UserController {
 		mav.addObject("loginUserName",loginUsername);
 		mav.addObject("email", userInformation.getEmail());
 		mav.addObject("prefecture", userInformation.getPrefecture().getName());
-		mav.addObject("activityPrefectures", activityPrefectureService.getActivityPrefectureNamesByUser(user));
+		mav.addObject("activityPrefectures", activityPrefectureService.getActivityPrefectureNamesByUser(user," "));
 		mav.setViewName("/user/information");
 		return mav;
 	}
